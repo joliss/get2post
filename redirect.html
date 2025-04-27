@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GET to POST Converter</title>
+    <title></title>
 </head>
 <body>
     <div id="loading">Redirecting...</div>
@@ -11,11 +11,14 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Get the full current URL without the hash part
+            const currentUrl = window.location.origin + window.location.pathname;
+
             // Get the URL from the fragment
             const fragment = window.location.hash.substring(1);
 
             if (!fragment) {
-                document.getElementById('loading').textContent = 'No URL provided. Use format: index.html#https://example.com/search?q=foo';
+                document.getElementById('loading').textContent = `No URL provided. Use format: ${currentUrl}#https://example.com/search?q=foo`;
                 return;
             }
 
@@ -42,7 +45,7 @@
                 // Submit the form automatically
                 form.submit();
             } catch (error) {
-                document.getElementById('loading').textContent = 'Error: ' + error.message + '. Use format: index.html#https://example.com/search?q=foo';
+                document.getElementById('loading').textContent = `Error: ${error.message}. Use format: ${currentUrl}#https://example.com/search?q=foo`;
             }
         });
     </script>
