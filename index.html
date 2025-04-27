@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>get2post - Convert GET requests to POST requests</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .example {
+            background-color: #f9f9f9;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .note {
+            background-color: #fffde7;
+            border-left: 4px solid #ffd600;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        a {
+            color: #2196F3;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>get2post</h1>
+
+    <p>A simple redirect tool to convert GET requests to POST requests.</p>
+
+    <h2>What is get2post?</h2>
+
+    <p>get2post is a client-side utility that allows you to take a URL with query parameters (normally used in GET requests)
+    and convert it to a POST request.</p>
+
+    <p>The main use case is using Chrome's <a href="https://support.google.com/chrome/answer/95426">site search</a> functionality for websites that only support POST requests.</p>
+
+    <h2>How to Use</h2>
+
+    <p>Simply append your target URL after the hash (#) symbol of the URL <code>https://joliss.github.io/get2post/redirect#</code>, with any POST parameters included as GET parameters. For example:</p>
+
+    <div class="example">
+        <code><a href="https://joliss.github.io/get2post/redirect#https://httpbin.org/post?foo=x&bar=y" target="_blank" style="font-weight: bold;">https://joliss.github.io/get2post/redirect#https://httpbin.org/post?foo=x&bar=y</a></code>
+    </div>
+
+    <p>This will result in a POST request to <code>https://httpbin.org/post</code>, with the <code>foo</code> and <code>bar</code> parameters turned into POST data.</p>
+
+    <div class="note">
+        <p style="margin-top: 0;"><strong>Tip:</strong> An easy way to obtain GET URLs for any form is by clicking "Inspect" on any form element and changing the form's <code>method</code> attribute to <code>"get"</code> in the web inspector:</p>
+        <img src="devtools.png" width="450" alt="DevTools screenshot: &lt;form method=&quot;get&quot; action=&quot;/post&quot;&gt;">
+    </div>
+
+    <h2>Privacy</h2>
+
+    <p>get2post <strong>doesn't collect any data</strong>. Your requests and parameters are kept private because:</p>
+
+    <ul>
+        <li>All data is processed entirely in your browser.</li>
+        <li>I don't log anything, nor do I use any analytics.</li>
+        <li>GitHub's servers (where this tool is hosted) can see your HTTP request, but not the URL you're redirecting to. That's because the hash fragment (everything after the #) is not sent to the server.</li>
+    </ul>
+
+    <h2>Limitations</h2>
+
+    <ul>
+        <li>The target server must accept application/x-www-form-urlencoded POST data.</li>
+        <li>This tool doesn't support file uploads.</li>
+    </ul>
+
+    <h2>About this project</h2>
+
+    <p>This tool was made by Jo Liss and is licensed under the <a href="https://github.com/joliss/get2post/blob/main/LICENSE.txt">Apache 2.0 License</a>.</p>
+
+    <p>If you are using this tool for your own service, I encourage you to host the <code><a href="https://github.com/joliss/get2post/blob/main/redirect.html">redirect.html</a></code> file on your own server for improved security.</p>
+
+    <p>You can clone the Git repository at <a href="https://github.com/joliss/get2post">https://github.com/joliss/get2post</a>.</p>
+</body>
+</html>
