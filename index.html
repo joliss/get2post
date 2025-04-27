@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET to POST Converter</title>
+</head>
+<body>
+    <div id="loading">Redirecting...</div>
+    <form id="postForm" method="post"></form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the URL from the fragment
+            const fragment = window.location.hash.substring(1);
+
+            if (!fragment) {
+                document.getElementById('loading').textContent = 'No URL provided. Use format: index.html#https://example.com/search?q=foo';
+                return;
+            }
+
+            try {
+                // Parse the URL from the fragment
+                const url = new URL(fragment);
+
+                // Get the base URL without query parameters
+                const baseUrl = url.origin + url.pathname;
+
+                // Create and configure the form
+                const form = document.getElementById('postForm');
+                form.action = baseUrl;
+
+                // Add all query parameters as hidden inputs
+                url.searchParams.forEach((value, key) => {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = value;
+                    form.appendChild(input);
+                });
+
+                // Submit the form automatically
+                form.submit();
+            } catch (error) {
+                document.getElementById('loading').textContent = 'Error: ' + error.message + '. Use format: index.html#https://example.com/search?q=foo';
+            }
+        });
+    </script>
+</body>
+</html>
